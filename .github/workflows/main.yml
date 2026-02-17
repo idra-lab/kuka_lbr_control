@@ -10,29 +10,27 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      # Checkout repo with submodules
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      # Setup ROS 2 Humble
       - name: Setup ROS
         uses: ros-tooling/setup-ros@v0.7
         with:
           required-ros-distributions: humble
 
-      # Build & test ROS workspace
+      - name: Debug tree
+        run: tree -L 3
+
       - name: ROS CI
         uses: ros-tooling/action-ros-ci@v0.3
         with:
           target-ros2-distro: humble
-          vcs-repo-file-url: ""
-          # build whole workspace
+          workspace: .
           colcon-defaults: |
             {
               "build": {
                 "symlink-install": true
               }
             }
-
