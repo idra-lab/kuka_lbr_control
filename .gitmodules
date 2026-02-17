@@ -1,15 +1,18 @@
 [submodule "lbr-stack/lib_fri_idl"]
 	path = lbr-stack/lib_fri_idl
 	url = https://github.com/lbr-stack/lbr_fri_idl
+
 [submodule "fri"]
 	path = lbr-stack/fri
-	url = git@github.com:lbr-stack/fri.git
+	url = https://github.com/lbr-stack/fri.git
 	branch = fri-1.17
+
 [submodule "controller"]
 	path = controllers
-	url = git@github.com:lucabeber/ros2_effort_controller.git
+	url = https://github.com/idra-lab/ros2_effort_controller.git
 	branch = kuka-prop-ctrl
+
 [submodule "lbr_stack/lbr_fri_ros2_stack"]
 	path = lbr-stack/lbr_fri_ros2_stack
-	url = git@github.com:lbr-stack/lbr_fri_ros2_stack.git
+	url = https://github.com/lbr-stack/lbr_fri_ros2_stack.git
 	branch = humble
