@@ -1,37 +1,38 @@
-name: Humble CI
+name: ROS2 Humble CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
 
 jobs:
-  humble_source:
+  humble:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      # Checkout repo with submodules
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      - uses: ros-tooling/setup-ros@v0.7
+      # Setup ROS 2 Humble
+      - name: Setup ROS
+        uses: ros-tooling/setup-ros@v0.7
         with:
           required-ros-distributions: humble
 
-      - name: Prepare workspace
-        run: |
-          mkdir -p ~/ros2_ws/src
-          shopt -s extglob
-          mv !(ros2_ws) ~/ros2_ws/src || true
-          cd ~/ros2_ws
-          rosdep update
-
-      - name: Install dependencies
-        run: |
-          cd ~/ros2_ws
-          rosdep install --from-paths src -i -r -y
-
-      - uses: ros-tooling/action-ros-ci@v0.3
+      # Build & test ROS workspace
+      - name: ROS CI
+        uses: ros-tooling/action-ros-ci@v0.3
         with:
-          package-name: kuka_package
           target-ros2-distro: humble
+          vcs-repo-file-url: ""
+          # build whole workspace
+          colcon-defaults: |
+            {
+              "build": {
+                "symlink-install": true
+              }
+            }
+
