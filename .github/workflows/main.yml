@@ -8,26 +8,29 @@ on:
 jobs:
   humble_source:
     runs-on: ubuntu-22.04
+
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
+
       - uses: ros-tooling/setup-ros@v0.7
         with:
           required-ros-distributions: humble
-      - run: |
-          # Create the workspace and move the repository to src
+
+      - name: Prepare workspace
+        run: |
           mkdir -p ~/ros2_ws/src
-          mv $(ls -d * | grep -v ros2_ws) ~/ros2_ws/src
+          shopt -s extglob
+          mv !(ros2_ws) ~/ros2_ws/src || true
           cd ~/ros2_ws
-          # Install and initialize rosdep
-          # sudo apt-get update
-          # sudo apt-get install -y python3-rosdep
-          sudo rosdep init
           rosdep update
-      - run: |
+
+      - name: Install dependencies
+        run: |
           cd ~/ros2_ws
           rosdep install --from-paths src -i -r -y
+
       - uses: ros-tooling/action-ros-ci@v0.3
         with:
           package-name: kuka_package
