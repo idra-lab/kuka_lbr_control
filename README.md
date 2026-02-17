@@ -54,6 +54,21 @@ The installation guide is available in the [Wiki page](https://github.com/idra-l
 
 ---
 ---  
+## Citation
+If you use these controllers, please consider citing our work and leaving us a star to support the project. :mechanical_arm: 🫶
+```
+@article{nardi2026anatomy,
+  author={Nardi, Davide and Lamon, Edoardo and Fontanelli, Daniele and Saveriano, Matteo and Palopoli, Luigi},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={An Anatomy-Aware Shared Control Approach for Assisted Teleoperation of Lung Ultrasound Examinations}, 
+  year={2026},
+  volume={11},
+  number={3},
+  pages={2570-2577},
+  keywords={Robots;Ribs;Probes;Ultrasonic imaging;Skin;Solid modeling;Computational modeling;Three-dimensional displays;Biological system modeling;Cameras;Medical robots and systems;physical human-robot interaction;telerobotics and teleoperation},
+  doi={10.1109/LRA.2026.3653292}}
+```
+
 
 ## References
 - [Cartesian controllers](https://github.com/fzi-forschungszentrum-informatik/cartesian_controllers.git)
